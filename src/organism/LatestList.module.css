@@ -1,0 +1,87 @@
+.listCon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--fs33);
+}
+
+.more {
+  font-size: var(--fs12);
+  transition: color 0.3s;
+}
+.more:hover {
+  color: var(--dark-colors-accent-dark);
+  font-weight: bold;
+}
+.more::after {
+  content: '\f138';
+  font-family: 'bootstrap-icons';
+  position: relative;
+  transform: translateX(0);
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.more:hover::after {
+  transform: translateX(5px);
+}
+
+.list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: var(--fs20);
+}
+
+@media (max-width: 600px) {
+  .list {
+    grid-template-columns: repeat(auto-fill, 1fr);
+  }
+}
+
+.skletion::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* animation: shimmer 2s; */
+  animation-name: shimmer;
+  animation-timing-function: ease-in;
+  animation-duration: 1s;
+  /* animation-fill-mode: both; */
+  /* animation-direction: alternate; */
+  animation-iteration-count: infinite;
+  transform: translateX(0%);
+}
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.productNum {
+  display: flex;
+  align-items: center;
+  color: var(--dark-colors-accent-dark);
+  margin-top: var(--fs16);
+}
+.productNum input {
+  max-width: 40px;
+  max-height: 25px;
+}
+
+.leftCon {
+  display: flex;
+  flex-direction: column;
+}
