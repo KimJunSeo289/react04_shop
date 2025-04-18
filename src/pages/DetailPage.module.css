@@ -9,7 +9,7 @@ main > * {
 .imgWrap {
   border-radius: var(--fs16);
   overflow: hidden;
-  width: calc(55% - var(--fs16));
+  width: calc(60% - var(--fs16));
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   position: relative;
 }

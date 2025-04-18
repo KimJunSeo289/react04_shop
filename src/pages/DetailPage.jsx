@@ -4,13 +4,16 @@ import css from './DetailPage.module.css'
 import { formatCurrency } from '@/utils/features'
 import DetailTabInfo from '@/organism/DetailTabInfo'
 import SimilarProducts from '@/organism/SimilarProducts'
+import Modal from '@/components/Modal'
 
 const DetailPage = () => {
   const { product, relatedProducts } = useLoaderData()
   console.log('DetailPage:product', product)
   console.log('DetailPage:relatedProducts', relatedProducts)
-
+  
   const [isLoading, setIsLoading] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [count, setCount] = useState(1)
 
   useEffect(() => {
     // 컴포넌트가 마운트된 직후에는 로딩 상태로 표시
@@ -37,6 +40,21 @@ const DetailPage = () => {
     )
   }
 
+  const decrease = () =>{
+    setCount(prev => prev > 1 ? prev - 1 : 1)
+  }
+  const increase = () =>{
+    setCount(prev => prev + 1)
+  }
+
+  const handleAddToCart =() => {
+    setIsModalOpen(true)
+  }
+  
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
   return (
     <main>
       <h2>DetailPage</h2>
@@ -52,16 +70,17 @@ const DetailPage = () => {
           <p className={css.category}>{product.category}</p>
           <div className={css.btnWrap}>
             <div className={css.counterArea}>
-              <button>-</button>
-              <span>1</span>
-              <button>+</button>
+              <button onClick={decrease}>-</button>
+              <span>{count}</span>
+              <button onClick={increase}>+</button>
             </div>
-            <button className={css.addBtn}>장바구니 담기</button>
+            <button className={css.addBtn} onClick={handleAddToCart}>장바구니 담기</button>
           </div>
         </div>
       </div>
       <DetailTabInfo />
       <SimilarProducts relatedProducts={relatedProducts} />
+      {isModalOpen && <Modal product={product} count={count} onClose={closeModal}/>}
     </main>
   )
 }

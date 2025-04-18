@@ -4,6 +4,7 @@ export const detailPageLoader = async info => {
   console.log('productsLoaders.js:info', info)
   const params = info.params
   try {
+
     // 상품 ID에 해당하는 정보
     const product = await getProductById(params.productId)
     console.log('productsLoaders.js:product', product.category)
