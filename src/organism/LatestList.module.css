@@ -25,7 +25,9 @@
 .more:hover::after {
   transform: translateX(5px);
 }
-
+.select {
+  width: 100%;
+}
 .list {
   width: 100%;
   display: grid;
@@ -37,51 +39,4 @@
   .list {
     grid-template-columns: repeat(auto-fill, 1fr);
   }
-}
-
-.skletion::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  /* animation: shimmer 2s; */
-  animation-name: shimmer;
-  animation-timing-function: ease-in;
-  animation-duration: 1s;
-  /* animation-fill-mode: both; */
-  /* animation-direction: alternate; */
-  animation-iteration-count: infinite;
-  transform: translateX(0%);
-}
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.productNum {
-  display: flex;
-  align-items: center;
-  color: var(--dark-colors-accent-dark);
-  margin-top: var(--fs16);
-}
-.productNum input {
-  max-width: 40px;
-  max-height: 25px;
-}
-
-.leftCon {
-  display: flex;
-  flex-direction: column;
 }

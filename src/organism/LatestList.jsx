@@ -2,67 +2,67 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import css from './LatestList.module.css'
 import ProductCard from '../components/ProductCard'
+import ProductCardSkeleton from '../components/ProductCardSkeleton'
 import { getProductsData } from '../api/productsApi'
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const LatestList = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
-  const [inputValue, setInputValue] = useState(6)
-
-  const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+  const [pCount, setPCount] = useState(6)
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true)
+        await delay(3000)
+        const data = await getProductsData(`category=new&_limit=${pCount}`)
+        console.log('data----', data)
 
-        const countData = await getProductsData(`category=new&_limit=${inputValue}`)
-        const count = countData.length
-        setProducts(new Array(count).fill(null))
-
-        const data = await getProductsData(`category=new&_limit=${inputValue}`)
-        await delay(1000)
         setProducts(data)
         setLoading(false)
       } catch (err) {
-        console.log('err----', err)
+        console.log(err)
         setLoading(false)
       }
     }
 
-    if (inputValue > 0) {
-      fetchProducts()
-    }
-  }, [inputValue])
+    fetchProducts()
+  }, [pCount])
 
+  const skeletonArr = Array(pCount).fill(null)
   return (
     <section className={css.listCon}>
-      <div className={css.leftCon}>
-        <h2>Shop The Latest</h2>
-        <div className={css.productNum}>
-          <p>상품 개수</p>
-          <input
-            type="number"
-            min="1"
-            value={inputValue}
-            onChange={e => {
-              const value = parseInt(e.target.value)
-              if (!isNaN(value) && value > 0) {
-                setInputValue(value)
-              }
-            }}
-          />
-        </div>
-      </div>
+      <h2>Shop The Latest</h2>
       <Link to={'/shop'} className={css.more}>
         View All
       </Link>
+      <div className={css.select}>
+        옵션:
+        <select
+          name="productCoun"
+          id="productCoun"
+          value={pCount}
+          onChange={e => setPCount(Number(e.target.value))}
+        >
+          <option value="2">2개씩</option>
+          <option value="4">4개씩</option>
+          <option value="6">6개씩</option>
+          <option value="8">8개씩</option>
+        </select>
+      </div>
       <ul className={css.list}>
-        {products.map((data, index) => (
-          <li key={index}>
-            <ProductCard data={data} loading={loading} />
-          </li>
-        ))}
+        {loading
+          ? skeletonArr.map((_, i) => (
+              <li key={i}>
+                <ProductCardSkeleton />
+              </li>
+            ))
+          : products.map(data => (
+              <li key={data.id}>
+                <ProductCard data={data} />
+              </li>
+            ))}
       </ul>
     </section>
   )

@@ -77,3 +77,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.swiper-pagination-bullet {
+  border-radius: 0;
+  width: var(--fs16);
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--dark-colors-accent-dark);
+}
