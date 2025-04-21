@@ -30,4 +30,4 @@ const ProductCard = ({ data, loading }) => {
   )
 }
 
-export default ProductCard
+export default React.memo(ProductCard)
