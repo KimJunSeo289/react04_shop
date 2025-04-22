@@ -55,6 +55,8 @@
     transition: 0.3s;
     background: var(--dark-colors-white-dark);
     margin-top: var(--fs8);
+    z-index: 10;
+    border-radius: var(--fs8);
   }
   .sortHeader > p {
     text-align: center;
@@ -85,32 +87,10 @@
   .list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: var(--f12);
+    gap: var(--fs26);
   }
   .list > li {
-    height: 300px;
-  }
-  
-  .paginationArea {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--fs8);
-    margin: var(--fs33) 0;
-  }
-  .paginationArea button {
-    border: none;
-    outline: none;
-    background: var(--light-colors-white-light);
-    border-radius: var(--fs8);
-    padding: var(--fs8);
-    transition: 0.3s;
-  }
-  /* .paginationArea button:not(:nth-last-child)  */
-  .paginationArea button:hover,
-  .paginationArea button.active {
-    background-color: var(--dark-colors-accent-dark);
-    color: var(--dark-colors-white-dark);
+    /* height: 300px; */
   }
   
   @media (max-width: 1100px) {
