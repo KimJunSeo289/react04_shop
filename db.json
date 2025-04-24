@@ -1061,5 +1061,37 @@
       "discount": 0,
       "count": 1
     }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "todosDesc": "할일 내용이 입력되는 곳",
+      "createAt": "2025.04.24",
+      "isDone": false
+    },
+    {
+      "id": 2,
+      "todosDesc": "22222할일 내용이 입력되는 곳",
+      "createAt": "2025.04.25",
+      "isDone": false
+    },
+    {
+      "id": 3,
+      "todosDesc": "33333할일 내용이 입력되는 곳",
+      "createAt": "2025.04.25",
+      "isDone": false
+    },
+    {
+      "id": 4,
+      "todosDesc": "4444할일일 내용이 입력되는 곳",
+      "createAt": "2025.04.25",
+      "isDone": false
+    },
+    {
+      "id": 5,
+      "todosDesc": "55555할일 내용이 입력되는 곳",
+      "createAt": "2025.04.25",
+      "isDone": false
+    }
   ]
 }
